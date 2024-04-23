@@ -1,5 +1,8 @@
 import Image from "next/image";
+
 import MathJax from "./mathjax";
+
+import TexEditor from "./ui/tex-editor";
 
 export default function Home() {
   return (
@@ -119,6 +122,8 @@ export default function Home() {
         \int_{"{a}"}
         $$
       </div>
+
+      <TexEditor />
     </main>
   );
 }
