@@ -116,13 +116,6 @@ export default function Home() {
         </a>
       </div>
 
-      <div>$\sum_k x_k$</div>
-      <div>
-        $$
-        \int_{"{a}"}
-        $$
-      </div>
-
       <TexEditor />
     </main>
   );
