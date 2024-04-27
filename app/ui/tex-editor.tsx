@@ -1,12 +1,13 @@
 'use client';
 
-// import {Button} from "@nextui-org/button";
+import { Button } from "@nextui-org/button";
 import { Textarea } from "@nextui-org/react";
 
 import { useState, useEffect } from "react";
 
 export default function TexEditor() {
   let [tex, setTex] = useState("");
+  let [text, setText] = useState("");
 
   useEffect(() => {
     // check for .typeset directly, rather than just
@@ -14,7 +15,7 @@ export default function TexEditor() {
     if (typeof window?.MathJax !== "undefined" && typeof window?.MathJax.typeset !== "undefined") {
       // console.log("mathjax is present?");
       window.MathJax.typeset();
-      console.log("useEffect typeset dynamic?");
+      // console.log("useEffect typeset dynamic?");
     }
   }, [tex]);
 
@@ -22,10 +23,12 @@ export default function TexEditor() {
     <div>
       <div>
         <Textarea
-          label="Description"
+          label="Your whiteboard"
           placeholder="Enter TeX here"
           className="max-w-xs"
+          value={text}
           onValueChange={(value: string) => {
+            setText(value);
             if (value.length > 0) {
               setTex("$$" + value + "$$");
             }
@@ -40,7 +43,23 @@ export default function TexEditor() {
         {tex}
       </div>
 
-    </div>
+      <div>
+        <Button>
+          Submit
+        </Button>
+        <Button
+          onPress={() => {
+            setText("");
+            setTex("");
+          }}
+        >
+          Clear
+        </Button>
+
+
+      </div>
+
+    </div >
 
   );
 }
